@@ -2,6 +2,10 @@
 
 A modern Parcel web UI built with TanStack Start.
 
+## Landing Page
+
+![Landing page screenshot](docs/images/landing-page.png)
+
 ## Features
 
 - Landing page with clear sign-in CTA
