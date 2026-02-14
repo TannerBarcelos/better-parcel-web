@@ -52,7 +52,7 @@ function SignInPage() {
           .
         </p>
 
-        <form onSubmit={onSubmit} className="stack">
+        <form onSubmit={onSubmit} className="stack" autoComplete="off">
           <label htmlFor="api-key">Parcel API key</label>
           <input
             id="api-key"
@@ -60,6 +60,8 @@ function SignInPage() {
             value={apiKey}
             onChange={(event) => setApiKey(event.target.value)}
             placeholder="pk_live_..."
+            autoComplete="off"
+            spellCheck={false}
             required
           />
           <button className="button primary" type="submit" disabled={loading}>

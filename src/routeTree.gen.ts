@@ -14,6 +14,7 @@ import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiSessionRouteImport } from './routes/api/session'
 import { Route as ApiDeliveriesRouteImport } from './routes/api/deliveries'
+import { Route as ApiCarriersRouteImport } from './routes/api/carriers'
 import { Route as ApiAddDeliveryRouteImport } from './routes/api/add-delivery'
 
 const SignInRoute = SignInRouteImport.update({
@@ -41,6 +42,11 @@ const ApiDeliveriesRoute = ApiDeliveriesRouteImport.update({
   path: '/api/deliveries',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiCarriersRoute = ApiCarriersRouteImport.update({
+  id: '/api/carriers',
+  path: '/api/carriers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAddDeliveryRoute = ApiAddDeliveryRouteImport.update({
   id: '/api/add-delivery',
   path: '/api/add-delivery',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRoute
   '/sign-in': typeof SignInRoute
   '/api/add-delivery': typeof ApiAddDeliveryRoute
+  '/api/carriers': typeof ApiCarriersRoute
   '/api/deliveries': typeof ApiDeliveriesRoute
   '/api/session': typeof ApiSessionRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/app': typeof AppRoute
   '/sign-in': typeof SignInRoute
   '/api/add-delivery': typeof ApiAddDeliveryRoute
+  '/api/carriers': typeof ApiCarriersRoute
   '/api/deliveries': typeof ApiDeliveriesRoute
   '/api/session': typeof ApiSessionRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/app': typeof AppRoute
   '/sign-in': typeof SignInRoute
   '/api/add-delivery': typeof ApiAddDeliveryRoute
+  '/api/carriers': typeof ApiCarriersRoute
   '/api/deliveries': typeof ApiDeliveriesRoute
   '/api/session': typeof ApiSessionRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/sign-in'
     | '/api/add-delivery'
+    | '/api/carriers'
     | '/api/deliveries'
     | '/api/session'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/sign-in'
     | '/api/add-delivery'
+    | '/api/carriers'
     | '/api/deliveries'
     | '/api/session'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/sign-in'
     | '/api/add-delivery'
+    | '/api/carriers'
     | '/api/deliveries'
     | '/api/session'
   fileRoutesById: FileRoutesById
@@ -104,6 +116,7 @@ export interface RootRouteChildren {
   AppRoute: typeof AppRoute
   SignInRoute: typeof SignInRoute
   ApiAddDeliveryRoute: typeof ApiAddDeliveryRoute
+  ApiCarriersRoute: typeof ApiCarriersRoute
   ApiDeliveriesRoute: typeof ApiDeliveriesRoute
   ApiSessionRoute: typeof ApiSessionRoute
 }
@@ -145,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiDeliveriesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/carriers': {
+      id: '/api/carriers'
+      path: '/api/carriers'
+      fullPath: '/api/carriers'
+      preLoaderRoute: typeof ApiCarriersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/add-delivery': {
       id: '/api/add-delivery'
       path: '/api/add-delivery'
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   AppRoute: AppRoute,
   SignInRoute: SignInRoute,
   ApiAddDeliveryRoute: ApiAddDeliveryRoute,
+  ApiCarriersRoute: ApiCarriersRoute,
   ApiDeliveriesRoute: ApiDeliveriesRoute,
   ApiSessionRoute: ApiSessionRoute,
 }

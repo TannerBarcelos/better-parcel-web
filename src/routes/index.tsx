@@ -6,8 +6,8 @@ export const Route = createFileRoute('/')({
 
 function LandingPage() {
   return (
-    <main className="shell">
-      <section className="hero card">
+    <main className="shell landing-shell">
+      <section className="hero card landing-section">
         <div className="hero-grid">
           <div>
             <p className="kicker">A Better Parcel Web Experience</p>
@@ -43,7 +43,7 @@ function LandingPage() {
         </div>
       </section>
 
-      <section className="feature-grid">
+      <section className="feature-grid landing-section">
         <article className="card feature-card">
           <h2>Delivery dashboard</h2>
           <p>
@@ -67,6 +67,51 @@ function LandingPage() {
             keeping it out of browser JavaScript.
           </p>
         </article>
+      </section>
+
+      <section className="card landing-section workflow-grid">
+        <article className="workflow-step">
+          <p className="kicker">Step 01</p>
+          <h3>Sign in with your Parcel API key</h3>
+          <p>
+            Secure sign in with HTTP-only session cookies. Your key is never exposed in browser
+            JavaScript.
+          </p>
+        </article>
+        <article className="workflow-step">
+          <p className="kicker">Step 02</p>
+          <h3>Browse every shipment instantly</h3>
+          <p>
+            See active and recent deliveries with status tags, clean metadata, and fast filtering.
+          </p>
+        </article>
+        <article className="workflow-step">
+          <p className="kicker">Step 03</p>
+          <h3>Open detail modal with map + timeline</h3>
+          <p>
+            Click any delivery to inspect status events and last-known location in a map overlay.
+          </p>
+        </article>
+      </section>
+
+      <section className="card landing-section cta-block">
+        <h2>Ready to manage your packages with a cleaner interface?</h2>
+        <p>
+          Start with your Parcel API key and get a sharper, more focused web dashboard immediately.
+        </p>
+        <div className="hero-actions">
+          <Link to="/sign-in" className="button primary">
+            Open Dashboard
+          </Link>
+          <a
+            href="https://parcel.app/help/api.html"
+            target="_blank"
+            rel="noreferrer"
+            className="button ghost"
+          >
+            Read API docs
+          </a>
+        </div>
       </section>
     </main>
   )
