@@ -11,10 +11,15 @@ Modern Parcel web client using TanStack Start with dark, sharp-edged UI.
 - Deployment targets used in this repo: Vercel and Cloudflare Workers tooling
 
 ## Design Constraints
-- Dark mode only.
 - No rounded corners.
 - Visual language: black/gray/white, sharp/blocky components.
 - Responsive on mobile and desktop.
+- Support both light and dark themes.
+- Theme behavior:
+  - Respect `prefers-color-scheme`.
+  - Provide user toggle (sun/moon).
+  - Persist theme in local storage.
+  - If stored theme differs from current system preference, system preference wins.
 
 ## App UX Rules
 - Add delivery opens in a modal from dashboard header.
