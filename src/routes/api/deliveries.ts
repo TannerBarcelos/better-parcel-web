@@ -7,6 +7,20 @@ function normalizeFilterMode(input: string | null): FilterMode {
   return input === 'recent' ? 'recent' : 'active'
 }
 
+function userMessageForStatus(status: number): string {
+  if (status === 429) {
+    return 'Too many requests right now. Please wait a moment and try again.'
+  }
+  if (status === 400) {
+    return 'We could not load deliveries with the selected options. Please try again.'
+  }
+  if (status >= 500) {
+    return 'Parcel is temporarily unavailable. Please try again soon.'
+  }
+
+  return 'Unable to load deliveries right now. Please try again.'
+}
+
 export const Route = createFileRoute('/api/deliveries')({
   server: {
     handlers: {
@@ -31,10 +45,7 @@ export const Route = createFileRoute('/api/deliveries')({
 
         const data = await parcelResponse.json().catch(() => null)
         if (!parcelResponse.ok) {
-          const error =
-            typeof data === 'object' && data && 'error' in data
-              ? String((data as { error: unknown }).error)
-              : 'Failed to fetch deliveries from Parcel API'
+          const error = userMessageForStatus(parcelResponse.status)
 
           return Response.json({ error }, { status: parcelResponse.status })
         }

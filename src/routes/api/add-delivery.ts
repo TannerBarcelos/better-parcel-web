@@ -7,6 +7,23 @@ type AddDeliveryRequest = {
   title?: string
 }
 
+function userMessageForStatus(status: number): string {
+  if (status === 429) {
+    return 'Too many requests right now. Please wait a moment and try again.'
+  }
+  if (status === 400) {
+    return 'We could not add this delivery. Please check the tracking details and try again.'
+  }
+  if (status === 404) {
+    return 'We could not find that shipment with the provided details.'
+  }
+  if (status >= 500) {
+    return 'Parcel is temporarily unavailable. Please try again soon.'
+  }
+
+  return 'Unable to add delivery right now. Please try again.'
+}
+
 export const Route = createFileRoute('/api/add-delivery')({
   server: {
     handlers: {
@@ -40,10 +57,7 @@ export const Route = createFileRoute('/api/add-delivery')({
 
         const data = await parcelResponse.json().catch(() => null)
         if (!parcelResponse.ok) {
-          const error =
-            typeof data === 'object' && data && 'error' in data
-              ? String((data as { error: unknown }).error)
-              : 'Failed to add delivery'
+          const error = userMessageForStatus(parcelResponse.status)
 
           return Response.json({ error }, { status: parcelResponse.status })
         }
