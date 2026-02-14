@@ -35,15 +35,22 @@ Open [http://localhost:3000](http://localhost:3000).
 
 Requires Node.js `20.19+` (or `22.12+` / newer) for Vite 7.
 
-## Deploy on Vercel
+## Deploy on Cloudflare Workers
 
-1. Push this repo to GitHub.
-2. Create a new Vercel project and import the repo.
-3. Framework preset: `Vite`.
-4. Build command: `pnpm build`.
-5. Output directory: leave default for TanStack Start/Vite output.
-6. Deploy.
+1. Log in to Cloudflare:
+```bash
+pnpm dlx wrangler login
+```
+2. Verify auth:
+```bash
+pnpm dlx wrangler whoami
+```
+3. Build and deploy:
+```bash
+pnpm run deploy
+```
 
+This project uses Wrangler + Cloudflare Vite plugin for deployment.
 No extra environment variables are required for Parcel integration because users sign in with their own API key.
 
 ## Parcel API docs
