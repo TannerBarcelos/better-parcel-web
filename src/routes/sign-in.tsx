@@ -32,7 +32,7 @@ function SignInPage() {
         throw new Error(data?.error ?? 'Unable to sign in')
       }
 
-      await navigate({ to: '/app' })
+      await navigate({ to: '/app', search: { mode: 'active', group: 'none' } })
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unable to sign in')
     } finally {

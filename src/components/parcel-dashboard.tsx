@@ -413,20 +413,21 @@ export function ParcelDashboard() {
       status: string
     }>,
   ) {
+    const nextMode = patch.mode ?? mode
+    const nextGroup = patch.group ?? group
+    const nextCarrier =
+      patch.carrier !== undefined ? patch.carrier || undefined : selectedCarrierFilter || undefined
+    const nextStatus =
+      patch.status !== undefined ? patch.status || undefined : selectedStatusFilter || undefined
+
     navigate({
       to: '/app',
-      search: (prev) => ({
-        ...prev,
-        ...patch,
-        carrier:
-          patch.carrier !== undefined
-            ? patch.carrier || undefined
-            : prev.carrier || undefined,
-        status:
-          patch.status !== undefined
-            ? patch.status || undefined
-            : prev.status || undefined,
-      }),
+      search: {
+        mode: nextMode,
+        group: nextGroup,
+        carrier: nextCarrier,
+        status: nextStatus,
+      },
       replace: true,
     })
   }
